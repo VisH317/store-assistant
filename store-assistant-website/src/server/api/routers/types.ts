@@ -9,3 +9,8 @@ export const CreateStoreData = z.object({
     location: z.string(), // add specific format here later once fully decided
     prompt: z.string().min(20).max(2000)
 })
+
+export const ChangeStorePromptData = z.object({
+    id: z.string().min(1).max(100),
+    prompt: z.string().min(20).max(2000)
+})
