@@ -2,8 +2,10 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import Nav from "~/Components/Nav/nav";
+import raleway from "~/utils/fonts";
 
 import { api } from "~/utils/api";
+
 
 const Home: NextPage = () => {
   // const hello = api.example.hello.useQuery({ text: "from tRPC" });
