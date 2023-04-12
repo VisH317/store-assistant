@@ -46,8 +46,8 @@ Finished page => tell how to advertise or stuff like that
 **Proper Description of Stuff to do:**
  * Setup supabase for the database
  * Next.JS for the desktop app:
-   * Initialize the app
-   * Setup the prisma schema
+   * Initialize the app ✅
+   * Setup the prisma schema 
    * Setup TRPC for the REST API to interface with the prisma schema
    * Setup the landing page
    * Authentication
