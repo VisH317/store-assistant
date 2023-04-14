@@ -25,11 +25,10 @@ export const storeRouter = createTRPCRouter({
             return allStores
         }),
     changeStorePrompt: publicProcedure
-        .input(ChangeStorePromptData)
+        .input(String)
         .mutation(async ({ input, ctx }) => {
             await ctx.prisma.store.updateMany({
-                where: { id: input.id },
-                data: { prompt: input.prompt }
+                data: { prompt: input }
             })
         })
 });

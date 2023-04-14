@@ -4,9 +4,29 @@ import type { GetServerSidePropsContext } from 'next'
 
 import { api } from '../utils/api'
 import { Store } from '@prisma/client'
+import Modal from '~/Components/Modal'
+import { warnOptionHasBeenMovedOutOfExperimental } from 'next/dist/server/config'
 
 export default function Dashboard({ user }:{ user: User }) {
     const { status, data } = api.store.getStores.useQuery(undefined, { trpc: { ssr: true } })
+    const updateStoreMutation = api.store.changeStorePrompt.useMutation()
+
+    // modal stuff
+    const [open, setOpen] = useState<boolean>(false)
+    const [store, setStore] = useState<Store>()
+
+    const [prompt, setPrompt] = useState<string>("")
+
+    const openModal = (s: Store): void => {
+        setStore(s)
+        setOpen(true)
+    }
+
+    const updateStore = () => {
+        updateStoreMutation.mutate(prompt)
+        setOpen(false)
+        alert("Updated prompt!")
+    }
 
     const mapStores = () => {
         return data?.map((s: Store) => (
@@ -14,7 +34,7 @@ export default function Dashboard({ user }:{ user: User }) {
                 <h1>{s.name}</h1>
                 <h5>{s.location}</h5>
                 <p>{s.description}</p>
-                <button onClick={() => console.log("wants to update")}>Update Prompt</button>
+                <button onClick={() => openModal(s)}>Update Prompt</button>
             </div>
         ))
     }
@@ -22,6 +42,11 @@ export default function Dashboard({ user }:{ user: User }) {
     return status==="success" ? (
         <div>
             {mapStores()}
+            <Modal open={open} close={() => setOpen(false)}>
+                <h1>Edit the description for your store: </h1>
+                <textarea placeholder={store?.prompt} rows={10} cols={50} value={prompt} onChange={e => setPrompt(e.target.value)}/>
+                <button onClick={updateStore}>Submit New Description</button>
+            </Modal>
         </div>
     ) : <div>LOADING or ERROR</div>
 }

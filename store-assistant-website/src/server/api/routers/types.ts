@@ -10,6 +10,5 @@ export const CreateStoreData = z.object({
 })
 
 export const ChangeStorePromptData = z.object({
-    id: z.string().min(1).max(100),
     prompt: z.string().min(20).max(2000)
 })
