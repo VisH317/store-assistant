@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { User, createServerSupabaseClient } from '@supabase/auth-helpers-nextjs'
+import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react'
 import type { GetServerSidePropsContext } from 'next'
 
 import { api } from '../utils/api'
@@ -7,9 +8,25 @@ import { Store } from '@prisma/client'
 import Modal from '~/Components/Modal'
 
 export default function Dashboard({ user }:{ user: User }) {
-    const { status, data } = api.store.getStores.useQuery(user.id)
-    console.log("status: ", status)
-    console.log("data: ", data)
+
+    const [stores, setStores] = useState<any[]>()
+    const newuser = useUser()
+    console.log("New User Pog: ", newuser)
+
+    const supabase = useSupabaseClient()
+
+    useEffect(() => {
+      async function loadData() {
+        const { data } = await supabase.from("stores").select("*")
+        console.log("store data: ", data)
+        setStores(data)
+      }
+      if(user) loadData()
+    }, [user])
+
+    // const { status, data } = api.store.getStores.useQuery(newuser!.id)
+    // console.log("status: ", status)
+    // console.log("data: ", data)
     const updateStoreMutation = api.store.changeStorePrompt.useMutation()
 
     // modal stuff
@@ -30,7 +47,7 @@ export default function Dashboard({ user }:{ user: User }) {
     }
 
     const mapStores = () => {
-        return data?.map((s: Store) => (
+        return stores?.map((s: Store) => (
             <div className="w-96 h-64" key={s.id.toString()}>
                 <h1>{s.name}</h1>
                 <h5>{s.location}</h5>
@@ -40,7 +57,7 @@ export default function Dashboard({ user }:{ user: User }) {
         ))
     }
 
-    return status==="success" ? (
+    return (
         <div>
             {mapStores()}
             <Modal open={open} close={() => setOpen(false)}>
@@ -49,7 +66,7 @@ export default function Dashboard({ user }:{ user: User }) {
                 <button onClick={updateStore}>Submit New Description</button>
             </Modal>
         </div>
-    ) : <div>LOADING or ERROR</div>
+    )
 }
 
 export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {

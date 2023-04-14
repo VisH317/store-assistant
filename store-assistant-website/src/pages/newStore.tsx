@@ -32,11 +32,12 @@ export default function NewStore({ user }: { user: User }) {
 
     return (
         <div>
-            <form onSubmit={submitHandler}>
+            <form onSubmit={submitHandler} className="bg-gray-200">
                 <input type="text" placeholder="Name:" value={name} onChange={e => setName(e.target.value)}/>
                 <textarea placeholder="Description:" value={desc} onChange={e => setDesc(e.target.value)}/>
                 <input type="text" placeholder="Location:" value={loc} onChange={e => setLoc(e.target.value)}/>
                 <textarea placeholder="Prompt" rows={5} cols={30} value={prompt} onChange={e => setPrompt(e.target.value)}/>
+                <button type="submit">Submit</button>
             </form>
         </div>
     )
