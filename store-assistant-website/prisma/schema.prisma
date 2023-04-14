@@ -20,7 +20,7 @@ datasource db {
 model Store {
     id String @id @default(cuid())
     createdAt DateTime @default(now())
-    userId Int @unique
+    userid String @db.Uuid
     name String
     description String?
     location String

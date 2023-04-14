@@ -50,9 +50,11 @@ Finished page => tell how to advertise or stuff like that
    * Setup the prisma schema ✅
    * Setup TRPC for the REST API to interface with the prisma schema (get all stores for a user and create a new store with the data, prompt updating) ✅
    * Setup the landing page 
-   * Authentication
-   * Form for signing up
+   * Authentication ✅
+   * Displaying all stores on the dashboard
+   * Form for signing up a store
    * Updating form
+   * Updating styles (Proper UI design)
  * Backend Chat:
    * Setup python and deploy as supabase edge function (should be pretty simple)
  * Mobile App:

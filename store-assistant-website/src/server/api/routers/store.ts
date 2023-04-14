@@ -3,7 +3,7 @@ import { z } from "zod";
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 import { ChangeStorePromptData, CreateStoreData } from "./types";
 
-export const exampleRouter = createTRPCRouter({
+export const storeRouter = createTRPCRouter({
 //   hello: publicProcedure
 //     .input(z.object({ text: z.string() }))
 //     .query(({ input }) => {
