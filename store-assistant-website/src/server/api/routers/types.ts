@@ -2,7 +2,7 @@ import { z } from "zod"
 
 export const CreateStoreData = z.object({
     createdAt: z.date(),
-    userId: z.string(),
+    userid: z.string(),
     name: z.string().min(3).max(20),
     desc: z.optional(z.string()),
     location: z.string(), // add specific format here later once fully decided

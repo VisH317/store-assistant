@@ -5,10 +5,11 @@ import type { GetServerSidePropsContext } from 'next'
 import { api } from '../utils/api'
 import { Store } from '@prisma/client'
 import Modal from '~/Components/Modal'
-import { warnOptionHasBeenMovedOutOfExperimental } from 'next/dist/server/config'
 
 export default function Dashboard({ user }:{ user: User }) {
-    const { status, data } = api.store.getStores.useQuery(undefined, { trpc: { ssr: true } })
+    const { status, data } = api.store.getStores.useQuery(user.id)
+    console.log("status: ", status)
+    console.log("data: ", data)
     const updateStoreMutation = api.store.changeStorePrompt.useMutation()
 
     // modal stuff
@@ -58,6 +59,9 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
     const {
       data: { session },
     } = await supabase.auth.getSession()
+
+    const out = await supabase.auth.getSession()
+    console.log("out: ", out)
   
     if (!session)
       return {

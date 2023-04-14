@@ -20,8 +20,11 @@ export const storeRouter = createTRPCRouter({
             await ctx.prisma.store.create({ data: input })
         }),
     getStores: publicProcedure
-        .query(async ({ ctx }) => {
-            const allStores = await ctx.prisma.store.findMany()
+        .input(String)
+        .query(async ({ input, ctx }) => {
+            const allStores = await ctx.prisma.store.findMany({
+                where: { userid: input }
+            })
             return allStores
         }),
     changeStorePrompt: publicProcedure
