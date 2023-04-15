@@ -10,6 +10,8 @@ import Modal from '~/Components/Modal'
 import type { Database } from '~/utils/supabase'
 import Link from 'next/link'
 import Sidebar from '~/Components/Sidebar'
+import { raleway } from '~/utils/fonts'
+import { lato } from '~/utils/fonts'
 
 export default function Dashboard({ user }:{ user: User }) {
 
@@ -65,7 +67,7 @@ export default function Dashboard({ user }:{ user: User }) {
         <>
             <div className="flex flex-row">
                 <Sidebar active={0}/>
-                <div className="">
+                <div className={`p-20 ${raleway.variable} font-sans`}>
                 My Stores:
                 {mapStores()}
                 <Link href="/newStore">Register New Store</Link>

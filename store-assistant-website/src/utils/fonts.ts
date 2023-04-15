@@ -1,8 +1,12 @@
-import { Raleway } from 'next/font/google'
+import { Lato, Raleway } from 'next/font/google'
 
-const raleway = Raleway({
+export const raleway = Raleway({
     subsets: ['latin'],
     variable: '--font-raleway'
 })
 
-export default raleway
+export const lato = Lato({
+    subsets: ['latin'],
+    variable: '--font-lato',
+    weight: ["700", "400"]
+})

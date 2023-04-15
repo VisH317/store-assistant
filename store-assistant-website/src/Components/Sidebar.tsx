@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import React from 'react'
-import raleway from '~/utils/fonts'
+import { raleway } from '~/utils/fonts'
 import Link from 'next/link'
 
 interface SidebarProps {

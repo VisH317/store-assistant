@@ -6,7 +6,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['var(--font-raleway)', ...fontFamily.sans]
+        sans: ['var(--font-raleway)', ...fontFamily.sans],
+        lato: ['var(--font-lato)', ...fontFamily.sans]
       }
     },
   },
