@@ -9,6 +9,7 @@ import type { Store } from '@prisma/client'
 import Modal from '~/Components/Modal'
 import type { Database } from '~/utils/supabase'
 import Link from 'next/link'
+import Sidebar from '~/Components/Sidebar'
 
 export default function Dashboard({ user }:{ user: User }) {
 
@@ -21,16 +22,15 @@ export default function Dashboard({ user }:{ user: User }) {
     useEffect(() => {
       async function loadData() {
         const res = await supabase.from("Store").select("*")
-        console.log("store data: ", res)
         setStores(res.data)
       }
       if(user) loadData()
     }, [user])
 
-    // const { status, data } = api.store.getStores.useQuery(newuser?.id)
-    // console.log("status: ", status)
-    // console.log("data: ", data)
-    // const updateStoreMutation = api.store.changeStorePrompt.useMutation()
+    const { status, data } = api.store.getStores.useQuery(newuser?.id)
+    console.log("status: ", status)
+    console.log("data: ", data)
+    const updateStoreMutation = api.store.changeStorePrompt.useMutation()
 
     // modal stuff
     const [open, setOpen] = useState<boolean>(false)
@@ -62,16 +62,21 @@ export default function Dashboard({ user }:{ user: User }) {
     }
 
     return (
-        <div>
-            My Stores:
-            {mapStores()}
-            <Link href="/newStore">Register New Store</Link>
+        <>
+            <div className="flex flex-row">
+                <Sidebar active={0}/>
+                <div className="">
+                My Stores:
+                {mapStores()}
+                <Link href="/newStore">Register New Store</Link>
+                </div>
+            </div>
             <Modal open={open} close={() => setOpen(false)}>
                 <h1>Edit the description for your store: </h1>
                 <textarea placeholder={store?.prompt} rows={10} cols={50} value={prompt} onChange={e => setPrompt(e.target.value)}/>
                 <button onClick={updateStore}>Submit New Description</button>
             </Modal>
-        </div>
+        </>
     )
 }
 
