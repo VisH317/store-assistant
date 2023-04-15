@@ -33,5 +33,12 @@ export const storeRouter = createTRPCRouter({
             await ctx.prisma.store.updateMany({
                 data: { prompt: input }
             })
+        }),
+    deleteStore: publicProcedure
+        .input(String)
+        .mutation(async ({ input, ctx }) => {
+            await ctx.prisma.store.delete({
+                where: { id: input }
+            })
         })
 });

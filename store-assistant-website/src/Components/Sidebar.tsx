@@ -12,9 +12,9 @@ export default function Sidebar(props: SidebarProps) {
     const router = useRouter()
 
     return (
-        <div className="w-[12.5%] bg-slate-200 h-screen flex flex-col">
-            <div className={`w-full p-10 text-7xl font-sans ${raleway.variable}`}>Logo</div>
-            <hr className="w-48 h-1 mx-auto bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700"/>
+        <div className="w-64 bg-slate-200 h-screen flex flex-col">
+            <div className={`w-full p-10 xl:text-7xl text-4xl font-sans ${raleway.variable}`}>Logo</div>
+            <hr className="w-48 h-1 mx-auto bg-gray-100 border-0 rounded md:my-10 dark:bg-slate-500"/>
             <div className="w-full flex flex-col">
                 <Action text="Stores" path="/dashboard" isActive={active===0}/>
                 <Action text="New Store" path="/newStore" isActive={active===1}/>
