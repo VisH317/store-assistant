@@ -43,8 +43,9 @@ export default function Dashboard({ user }:{ user: User }) {
         setOpen(true)
     }
 
-    const updateStore = () => {
-        updateStoreMutation.mutate(prompt)
+    const updateStore = async () => {
+        // updateStoreMutation.mutate(prompt)
+        await supabase.from("Store").update({ prompt }).eq('id', store?.id)
         setOpen(false)
         alert("Updated prompt!")
     }
