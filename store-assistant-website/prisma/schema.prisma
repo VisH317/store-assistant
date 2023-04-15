@@ -19,7 +19,7 @@ datasource db {
 
 
 model Store {
-    id String @id @default(cuid())
+    id String @id @db.Uuid @default(cuid())
     createdAt DateTime @default(now())
     userid String @db.Uuid
     name String

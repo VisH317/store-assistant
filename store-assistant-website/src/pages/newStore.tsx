@@ -4,11 +4,17 @@ import type { GetServerSidePropsContext } from 'next'
 
 import { api } from '../utils/api'
 import { Store } from '@prisma/client'
-import { useState } from 'react'
+import React, { useState } from 'react'
+import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react'
+import { Database } from '~/utils/supabase'
+import crypto from 'crypto'
 
 export default function NewStore({ user }: { user: User }) {
 
     const createStore = api.store.createStore.useMutation()
+
+    const newuser = useUser()
+    const supabase = useSupabaseClient<Database>()
 
     // form states
     const [name, setName] = useState<string>("")
@@ -16,17 +22,22 @@ export default function NewStore({ user }: { user: User }) {
     const [loc, setLoc] = useState<string>("")
     const [prompt, setPrompt] = useState<string>("")
 
-    const submitHandler = () => {
+    const submitHandler = async (e: React.FormEvent<HTMLInputElement>) => {
+        e.preventDefault()
         const body = {
-            createdAt: new Date(),
-            userId: user.id,
+            createdAt: ((new Date()).toISOString()).toLocaleString(),
+            userid: user.id,
             name,
-            desc,
+            description: desc,
             location: loc,
-            prompt
+            prompt,
         }
 
-        createStore.mutate(body)
+        // createStore.mutate(body)
+        const { data, error } = await supabase.from("Store").insert(body)
+        console.log("data: ", data)
+        console.log("error: ", error)
+        
 
     }
 

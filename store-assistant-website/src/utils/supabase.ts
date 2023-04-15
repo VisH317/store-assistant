@@ -54,7 +54,7 @@ export interface Database {
         Insert: {
           createdAt?: string
           description?: string | null
-          id: string
+          id?: string
           location: string
           name: string
           prompt: string
