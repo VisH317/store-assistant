@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react'
-import { User, createServerSupabaseClient } from '@supabase/auth-helpers-nextjs'
+import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs'
+import type { User } from '@supabase/auth-helpers-nextjs'
 import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react'
 import type { GetServerSidePropsContext } from 'next'
 
 import { api } from '../utils/api'
-import { Store } from '@prisma/client'
+import type { Store } from '@prisma/client'
 import Modal from '~/Components/Modal'
+import type { Database } from '~/utils/supabase'
+import Link from 'next/link'
 
 export default function Dashboard({ user }:{ user: User }) {
 
@@ -13,21 +16,21 @@ export default function Dashboard({ user }:{ user: User }) {
     const newuser = useUser()
     console.log("New User Pog: ", newuser)
 
-    const supabase = useSupabaseClient()
+    const supabase = useSupabaseClient<Database>()
 
     useEffect(() => {
       async function loadData() {
-        const { data } = await supabase.from("stores").select("*")
-        console.log("store data: ", data)
-        setStores(data)
+        const res = await supabase.from("Store").select("*")
+        console.log("store data: ", res)
+        setStores(res.data)
       }
       if(user) loadData()
     }, [user])
 
-    // const { status, data } = api.store.getStores.useQuery(newuser!.id)
+    // const { status, data } = api.store.getStores.useQuery(newuser?.id)
     // console.log("status: ", status)
     // console.log("data: ", data)
-    const updateStoreMutation = api.store.changeStorePrompt.useMutation()
+    // const updateStoreMutation = api.store.changeStorePrompt.useMutation()
 
     // modal stuff
     const [open, setOpen] = useState<boolean>(false)
@@ -59,7 +62,9 @@ export default function Dashboard({ user }:{ user: User }) {
 
     return (
         <div>
+            My Stores:
             {mapStores()}
+            <Link href="/newStore">Register New Store</Link>
             <Modal open={open} close={() => setOpen(false)}>
                 <h1>Edit the description for your store: </h1>
                 <textarea placeholder={store?.prompt} rows={10} cols={50} value={prompt} onChange={e => setPrompt(e.target.value)}/>
