@@ -15,8 +15,8 @@ export default function Login() {
 
     const loginHandler = () => {
         void (async () => {
-            const { data, error } = await supabase.auth.signInWithPassword({ email, password })
-            await router.push("/dashboard")
+            const { data, error } = await supabase.auth.signUp({ email, password })
+            await router.push("/login")
         })()
     }
 
@@ -28,8 +28,8 @@ export default function Login() {
                 <h1 className="text-6xl text-slate-800">Sign in</h1>
                 <input type="text" value={email} onChange={e => setEmail(e.target.value)} placeholder="Email:" className='w-[60%] border-2 duration-300 rounded-md border-slate-200 p-5 hover:border-slate-400 hover:bg-slate-100 focus:bg-slate-100'/>
                 <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Password:" className='w-[60%] border-2 rounded-md duration-300 border-slate-200 p-5 hover:border-slate-400  hover:bg-slate-100 focus:bg-slate-100'/>
-                <button onClick={loginHandler} className='w-[60%] h-20 text-violet-500 border-violet-500 border-2 hover:border-violet-600 text-2xl font-normal disabled:cursor-not-allowed cursor-pointer disabled:hover:bg-violet-50 rounded-md disabled:bg-violet-100 enabled:hover:bg-violet-600 enabled:hover:text-gray-200 enabled:hover:-translate-y-1 enabled:hover:shadow-md duration-300'>Login</button>
-                <Link href="/signup" className="text-lg cursor-pointer hover:underline duration-300">{"Don't have an account? Sign Up"}</Link>
+                <button onClick={loginHandler} className='w-[60%] h-20 text-violet-500 border-violet-500 border-2 hover:border-violet-600 text-2xl font-normal disabled:cursor-not-allowed cursor-pointer disabled:hover:bg-violet-50 rounded-md disabled:bg-violet-100 enabled:hover:bg-violet-600 enabled:hover:text-gray-200 enabled:hover:-translate-y-1 enabled:hover:shadow-md duration-300'>Sign Up</button>
+                <Link href="/login" className="text-lg cursor-pointer hover:underline duration-300">{"Already have an account? Log In"}</Link>
             </div>
         </div>
     )
