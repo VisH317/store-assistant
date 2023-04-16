@@ -10,6 +10,9 @@
     "start": "next start"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@prisma/client": "^4.12.0",
     "@supabase/auth-helpers-nextjs": "^0.6.0",
     "@supabase/auth-helpers-react": "^0.3.1",
@@ -21,9 +24,11 @@
     "@trpc/next": "^10.18.0",
     "@trpc/react-query": "^10.18.0",
     "@trpc/server": "^10.18.0",
+    "@types/styled-components": "^5.1.26",
     "next": "^13.2.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "styled-components": "^5.3.9",
     "superjson": "1.12.2",
     "zod": "^3.21.4"
   },

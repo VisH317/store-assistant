@@ -9,12 +9,23 @@ import { useState } from "react";
 
 import "~/styles/globals.css";
 
+import { createGlobalStyle } from "styled-components";
+import { config, dom } from "@fortawesome/fontawesome-svg-core";
+
+config.autoAddCss = false;
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
+const GlobalStyles = createGlobalStyle`
+    ${dom.css()}
+`;
+
+
 const MyApp: AppType = ({ Component, pageProps }) => {
 
     const [supabaseClient] = useState(() => createBrowserSupabaseClient())
 
     return (
         <SessionContextProvider supabaseClient={supabaseClient} initialSession={pageProps.initialSession}>
+            <GlobalStyles/>
             <Component {...pageProps} />
         </SessionContextProvider>
     )
