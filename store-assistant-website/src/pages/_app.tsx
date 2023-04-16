@@ -24,7 +24,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
     const [supabaseClient] = useState(() => createBrowserSupabaseClient())
 
     return (
-        <SessionContextProvider supabaseClient={supabaseClient} initialSession={pageProps.initialSession}>
+        <SessionContextProvider supabaseClient={supabaseClient}>
             <GlobalStyles/>
             <Component {...pageProps} />
         </SessionContextProvider>
