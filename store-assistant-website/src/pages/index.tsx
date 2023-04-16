@@ -25,12 +25,12 @@ const Home: NextPage = () => {
             <Nav/>
             <div className={`h-1/2 p-10 w-full bg-slate-200 flex flex-row font-sans ${raleway.variable} py-20`}>
               <div className="w-1/2 flex justify-center items-center flex-col gap-10 duration-300">
-                <p className="font-semibold text-5xl hover:-translate-y-1 duration-300">Create AI Store Assistants in Minutes</p>
+                <p className="font-semibold text-5xl hover:-translate-y-1 duration-300 text-center">Create AI Store Assistants in Minutes</p>
                 <p className="text-xl font-light text-center w-[70%] hover:-translate-y-1 duration-300">Finding an item in a large store is like finding a needle in a haystack. StoreGPT is your magnet to find what you need faster, even if you have a language barrier.</p>
                 <button className='w-[30%] h-16 text-white bg-violet-500 text-2xl font-normal disabled:cursor-not-allowed cursor-pointer disabled:hover:bg-violet-50 rounded-md disabled:bg-violet-100 enabled:hover:bg-violet-600 enabled:hover:text-gray-200 enabled:hover:-translate-y-1 enabled:hover:shadow-md duration-300'>Get Started</button>
               </div>
               <div className="w-1/2 flex justify-start">
-                <Image src="/undraw_shopping_app_flsj.svg" alt="bruh" width={650} height={100} className="ml-[10%] hover:-translate-y-1 duration-300"/>
+                <Image src="/undraw_shopping_app_flsj.svg" alt="bruh" width={450} height={250} className="object-cover ml-[10%] hover:-translate-y-1 duration-300"/>
               </div>
             </div>
             <About/>

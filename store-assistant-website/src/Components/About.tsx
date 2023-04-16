@@ -9,11 +9,11 @@ import { faLanguage } from '@fortawesome/free-solid-svg-icons'
 
 export default function About() {
     return (
-        <div className={`p-10 w-9/12 ml-[12.5%] flex flex-row font-sans ${raleway.variable} py-20 cursor-default`}>
+        <div className={`p-10 w-9/12 ml-[12.5%] gap-20 flex flex-row font-sans ${raleway.variable} py-20 cursor-default`}>
             <div className="w-1/2 flex justify-center">
                 <Image src="/undraw_shopping_bags_tdby.svg" alt="bruh" width={700} height={100} className="hover:-translate-y-1 duration-300"/>
             </div>
-            <div className="w-1/2 flex flex-col justify-start justify-center gap-10">
+            <div className="w-2/3 flex flex-col justify-start justify-center gap-10">
                 <p className="text-6xl font-bold">About StoreGPT</p>
                 <AboutPiece title="Set Up Your Assistant In Minutes" desc="StoreGPT provides simple and effective tools for you to create a chatbot-based store directory for people to navigate your store. Just provide your store's location and a description and we got the rest" icon="store"/>
                 <AboutPiece title="Customers Can Access Your Assistant Easily" desc="Customers can access your store through our app as soon as they walk to your location. There's no complex access mechanisms here, and its available to anyone with a phone" icon="user"/>
