@@ -2,23 +2,19 @@ import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs'
 import type { User } from '@supabase/auth-helpers-nextjs'
 import type { GetServerSidePropsContext } from 'next'
 
-import { api } from '../utils/api'
-import { Store } from '@prisma/client'
+// import { api } from '../utils/api'
 import React, { useEffect, useState } from 'react'
-import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react'
-import { Database } from '~/utils/supabase'
-import crypto from 'crypto'
+import { useSupabaseClient } from '@supabase/auth-helpers-react'
+import type { Database } from '~/utils/supabase'
 import Sidebar from '~/Components/Sidebar'
 import { raleway } from '~/utils/fonts'
-import { router } from '@trpc/server'
 import { useRouter } from 'next/router'
-import { create } from 'domain'
 
 export default function NewStore({ user }: { user: User }) {
 
-    const createStore = api.store.createStore.useMutation()
+    // const createStore = api.store.createStore.useMutation()
 
-    const newuser = useUser()
+    // const newuser = useUser()
     const supabase = useSupabaseClient<Database>()
 
     const router = useRouter()
@@ -55,7 +51,7 @@ export default function NewStore({ user }: { user: User }) {
         return true
     }
 
-    const submitHandler = async (e: React.FormEvent<HTMLInputElement>) => {
+    const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         if(!updateAlert()) return
         const body = {
@@ -68,7 +64,7 @@ export default function NewStore({ user }: { user: User }) {
         }
 
         // createStore.mutate(body)
-        const { data, error } = await supabase.from("Store").insert(body)
+        await supabase.from("Store").insert(body)
         await router.push("/dashboard")
     }
 
@@ -76,6 +72,7 @@ export default function NewStore({ user }: { user: User }) {
         <div className='flex flex-row'>
             <Sidebar active={1}/>
             <div className="bg-slate-50 w-full flex justify-center items-center p-5">
+                {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
                 <form onSubmit={submitHandler} className={`${raleway.variable} font-sans flex flex-col max-[1920px]:w-2/3 w-1/2 bg-white p-10 h-5/12 shadow-md hover:shadow-lg duration-300 rounded-md gap-7`}>
                     <div className="flex-none flex flex-col w-full items-center gap-5">
                         <p className="text-5xl font-semibold text-slate-600 font-medium text-center">Create a New Store Assistant:</p>

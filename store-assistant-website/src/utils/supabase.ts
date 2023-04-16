@@ -44,7 +44,7 @@ export interface Database {
       Store: {
         Row: {
           createdAt: string
-          description: string | null
+          description: string
           id: string
           location: string
           name: string
@@ -53,7 +53,7 @@ export interface Database {
         }
         Insert: {
           createdAt?: string
-          description?: string | null
+          description?: string
           id?: string
           location: string
           name: string
@@ -62,7 +62,7 @@ export interface Database {
         }
         Update: {
           createdAt?: string
-          description?: string | null
+          description?: string
           id?: string
           location?: string
           name?: string
