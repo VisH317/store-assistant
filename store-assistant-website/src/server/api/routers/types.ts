@@ -1,7 +1,7 @@
 import { z } from "zod"
 
 export const CreateStoreData = z.object({
-    createdAt: z.date(),
+    createdAt: z.string(),
     userid: z.string(),
     name: z.string().min(3).max(20),
     desc: z.optional(z.string()),
