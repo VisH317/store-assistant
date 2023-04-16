@@ -75,17 +75,17 @@ export default function NewStore({ user }: { user: User }) {
     return (
         <div className='flex flex-row'>
             <Sidebar active={1}/>
-            <div className="bg-slate-50 w-full flex justify-center items-center">
-                <form onSubmit={submitHandler} className={`${raleway.variable} font-sans flex flex-col w-1/2 bg-white p-10 h-5/12 shadow-md hover:shadow-lg duration-300 rounded-md gap-7`}>
+            <div className="bg-slate-50 w-full flex justify-center items-center p-5">
+                <form onSubmit={submitHandler} className={`${raleway.variable} font-sans flex flex-col max-[1920px]:w-2/3 w-1/2 bg-white p-10 h-5/12 shadow-md hover:shadow-lg duration-300 rounded-md gap-7`}>
                     <div className="flex-none flex flex-col w-full items-center gap-5">
-                        <p className="text-5xl font-semibold text-slate-600 font-medium">Create a New Store Assistant:</p>
+                        <p className="text-5xl font-semibold text-slate-600 font-medium text-center">Create a New Store Assistant:</p>
                         <div className="h-2"/>
                     </div>
                     <div className="grow flex flex-col items-center justify-center gap-6">
                         <input type="text" placeholder="Name:" value={name} onChange={e => setName(e.target.value)} className="w-[60%] border-2 duration-300 border-slate-200 p-5 hover:border-slate-400"/>
                         <textarea placeholder="Description:" value={desc} onChange={e => setDesc(e.target.value)} className="w-[60%] border-2 duration-300 border-slate-200 p-5 hover:border-slate-400"/>
                         <input type="text" placeholder="Location:" value={loc} onChange={e => setLoc(e.target.value)} className="w-[60%] border-2 duration-300 border-slate-200 p-5 hover:border-slate-400"/>
-                        <textarea placeholder={`Prompt: Include description of each aisle/location with a colon at the end, its items, and its relative location from the entrance (separated by line)\n\nExample: Aisle 1: item 1, item 2, item 3; location`} rows={8} cols={30} value={prompt} onChange={e => setPrompt(e.target.value)} className="w-[60%] border-2 duration-300 border-slate-200 p-5 hover:border-slate-400"/>
+                        <textarea placeholder={`Prompt: Include description of each aisle/location with a colon at the end, its items, and its relative location from the entrance (separated by line)\n\nExample: Aisle 1: item 1, item 2, item 3; location`} rows={4} cols={30} value={prompt} onChange={e => setPrompt(e.target.value)} className="w-[60%] border-2 duration-300 border-slate-200 p-5 hover:border-slate-400"/>
                     </div>
                     <div className={`${createAlert.length===0 ? "hidden" : "block"} rounded-xl bg-red-200 border-red-500 text-red-500 p-5 w-[80%] h-8`}>{createAlert}</div>
                     <div className="flex-none flex justify-center">

@@ -109,7 +109,7 @@ export default function Dashboard({ user }:{ user: User }) {
                 </div>
             </Modal>
             <Modal open={deleteModal} close={closeDeleteModal} del>
-                <p className={`text-4xl ${raleway.variable} font-sans font-bold`}>Are you sure?</p>
+                <p className={`text-4xl ${raleway.variable} font-sans font-bold text-center`}>Are you sure?</p>
                 <button onClick={() => deleteStore(store!)} className={`shadow-md bg-red-500 text-white font-normal text-center px-5 py-3 hover:-translate-y-1 hover:bg-red-400 duration-300 hover:rounded-md hover:shadow-xl ${raleway.variable} font-sans`}>Delete</button>
             </Modal>
         </>
