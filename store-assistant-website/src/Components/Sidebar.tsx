@@ -14,7 +14,7 @@ export default function Sidebar(props: SidebarProps) {
 
     return (
         <div className="w-64 bg-slate-200 h-screen flex flex-col">
-            <div className={`w-full p-10 xl:text-7xl text-4xl font-sans ${raleway.variable}`}>Logo</div>
+            <div className={`w-full p-10 xl:text-7xl text-4xl font-sans ${raleway.variable}`}>StoreGPT</div>
             <hr className="w-48 h-1 mx-auto bg-gray-100 border-0 rounded md:my-10 dark:bg-slate-500"/>
             <div className="w-full flex flex-col">
                 <Action text="Stores" path="/dashboard" isActive={active===0}/>

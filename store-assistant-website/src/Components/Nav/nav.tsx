@@ -7,7 +7,7 @@ export default function Nav() {
 
     return (
         <div className={`w-full h-24 bg-slate-200 flex justify-center items-center gap-10 font-sans sticky top-0 ${raleway.variable}`}>
-            <Link href="/" className="text-5xl font-black text-slate-800">Store Assist</Link>
+            <Link href="/" className="text-5xl font-black text-slate-800">StoreGPT</Link>
             <div className="w-[10%]"/>
             <Link href="/" className="font-bold text-slate-500 text-xl px-5 hover:text-slate-400 duration-300">About</Link>
             <Link href="/" className="font-bold text-slate-500 text-xl px-5 hover:text-slate-400 duration-300">Product</Link>
