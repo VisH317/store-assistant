@@ -94,7 +94,7 @@ export default function Dashboard({ user }:{ user: User }) {
                   <div className="flex flex-row flex-wrap gap-2">
                     {mapStores()}
                   </div>
-                  <button className="bg-violet-500 rounded-[50%] xl:w-24 lg:w-16 aspect-square hover:bg-violet-400 duration-300 hover:-translate-y-2 hover:shadow-2xl shadow-lg absolute bottom-20 right-20"><Link href="/newStore" className="text-7xl text-white font-light p-5 aspect-square">+</Link></button>
+                  <button className="bg-violet-500 rounded-[50%] min-[1920px]:w-24 max-[1920px]:w-16 aspect-square hover:bg-violet-400 duration-300 hover:-translate-y-2 hover:shadow-2xl shadow-lg absolute bottom-20 right-20"><Link href="/newStore" className="text-7xl text-white font-light p-5 aspect-square">+</Link></button>
                 </div>
             </div>
             <Modal open={open} close={() => setOpen(false)} del={false}>
