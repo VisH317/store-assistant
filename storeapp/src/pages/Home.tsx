@@ -1,6 +1,8 @@
 import React from 'react'
 import { View, Text, StyleSheet, Image, Pressable, TouchableWithoutFeedback } from 'react-native'
 import colors from '../colors'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 
 
 export default function Home({ navigation }: any): JSX.Element {
@@ -14,7 +16,10 @@ export default function Home({ navigation }: any): JSX.Element {
                 <Text style={styles.desc}>Your personal shopping assistant powered by AI tools</Text>
             </View>
             <View style={styles.btnContainer}>
-                <Pressable style={styles.btn}></Pressable>
+                <Pressable style={styles.btn}>
+                    <Text style={styles.btnText}>Find a Store</Text>
+                    <FontAwesomeIcon icon={faArrowRight} size="lg" color="white"/>
+                </Pressable>
             </View>
         </View>
     )
@@ -61,8 +66,16 @@ const styles = StyleSheet.create({
         alignItems: "center"
     },
     btn: {
-        color: "#ffffff",
+        color: "white",
         backgroundColor: colors.dark,
-        fontSize: 
+        display: "flex",
+        flexDirection: "row",
+        width: 100,
+        height: 40
+    },
+    btnText: {
+        color: "white",
+        borderRightWidth: 4,
+        borderRightColor: colors.medium,
     }
 })
