@@ -25,9 +25,10 @@ export default function Dashboard({ user }:{ user: User }) {
     useEffect(() => {
       async function loadData() {
         const res = await supabase.from("Store").select("*")
-        setStores(res?.data)
+        setStores(res?.data as Store[])
       }
       if(user) void loadData()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user])
 
     const { status, data } = api.store.getStores.useQuery(newuser?.id as string)
