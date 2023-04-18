@@ -9,6 +9,10 @@ export default function Home({ navigation }: any): JSX.Element {
 
     const [pressed, setPressed] = useState<boolean>(false)
 
+    const navigateToSearch = () => {
+        navigation.navigate("Search")
+    }
+
     return (
         <View style={styles.container}>
             <View style={{height: 64}}/>
@@ -21,7 +25,7 @@ export default function Home({ navigation }: any): JSX.Element {
                 <Text style={styles.desc}>Your personal shopping assistant powered by AI tools</Text>
             </View>
             <View style={styles.btnContainer}>
-                <TouchableHighlight style={pressed ? styles.btnActive : styles.btn} onShowUnderlay={() => setPressed(true)} onHideUnderlay={() => setPressed(false)}>
+                <TouchableHighlight style={pressed ? styles.btnActive : styles.btn} underlayColor={colors.main} activeOpacity={0.8} onPressOut={navigateToSearch}>
                     <View style={styles.btnInside}>
                         <Text style={styles.btnText}>Find a Store</Text>
                         <View style={{flex: 1, justifyContent: "center", alignItems: "center", marginLeft: 21}}>
