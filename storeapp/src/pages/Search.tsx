@@ -5,7 +5,7 @@ import colors from '../colors'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
-import supabase from '../lib/supabase'
+import search from '../lib/search'
 
 export default function Search({ navigation }: any): JSX.Element {
 
@@ -14,7 +14,7 @@ export default function Search({ navigation }: any): JSX.Element {
     }
 
     const getStores = (name: string) => {
-        
+
     }
 
     return (
