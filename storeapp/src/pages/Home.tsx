@@ -18,7 +18,7 @@ export default function Home({ navigation }: any): JSX.Element {
             <View style={styles.btnContainer}>
                 <Pressable style={styles.btn}>
                     <Text style={styles.btnText}>Find a Store</Text>
-                    <FontAwesomeIcon icon={faArrowRight} size="lg" color="white"/>
+                    {/* <FontAwesomeIcon icon={faArrowRight} size="lg" color="white"/> */}
                 </Pressable>
             </View>
         </View>
@@ -30,7 +30,9 @@ const styles = StyleSheet.create({
         display: "flex",
         flexDirection: "column",
         padding: 10,
-        fontFamily: "'Raleway', sans-serif"
+        fontFamily: "'Raleway', sans-serif",
+        justifyContent: "center",
+        height: "100%"
     },
     imageContainer: {
         paddingVertical: 10,
@@ -38,7 +40,11 @@ const styles = StyleSheet.create({
         flexGrow: 0
     },
     textContainer: {
-        flexGrow: 0
+        flexGrow: 0,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center"
     },
     titleText: {
         fontStyle: "normal",
@@ -57,25 +63,30 @@ const styles = StyleSheet.create({
     desc: {
         fontWeight: "300",
         fontSize: 20,
-        textAlign: "center"
+        textAlign: "center",
+        width: "80%"
     },
     btnContainer: {
         flexGrow: 1,
         display: "flex",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        marginTop: 20
     },
     btn: {
         color: "white",
         backgroundColor: colors.dark,
         display: "flex",
         flexDirection: "row",
-        width: 100,
-        height: 40
+        width: 170,
+        height: 50,
+        padding: 10
     },
     btnText: {
         color: "white",
-        borderRightWidth: 4,
+        borderRightWidth: 2,
         borderRightColor: colors.medium,
+        paddingRight: 10,
+        fontSize: 20
     }
 })

@@ -5,7 +5,9 @@ import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 // react query and navigation setup
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
+
 
 // component imports
 import Home from './pages/Home';
@@ -18,7 +20,7 @@ type RootStackParamList = {
   Chat: { storeID: string }
 }
 
-const Stack = createStackNavigator<RootStackParamList>()
+const Stack = createNativeStackNavigator<RootStackParamList>()
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -36,14 +38,17 @@ export default function App(): JSX.Element {
   };
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <SafeAreaView style={backgroundStyle}>
-        <Stack.Navigator>
-          <Stack.Screen name="Home" component={Home}/>
-          <Stack.Screen name="Search" component={Search}/>
-          <Stack.Screen name="Chat" component={Chat}/>
-        </Stack.Navigator>
-      </SafeAreaView>
-    </QueryClientProvider>
+    <NavigationContainer>
+      <QueryClientProvider client={queryClient}>
+        <SafeAreaView style={backgroundStyle}>
+          {/* <Stack.Navigator initialRouteName='Home'>
+            <Stack.Screen name="Home" component={Home}/>
+            <Stack.Screen name="Search" component={Search}/>
+            <Stack.Screen name="Chat" component={Chat}/>
+          </Stack.Navigator> */}
+          <Home/>
+        </SafeAreaView>
+      </QueryClientProvider>
+    </NavigationContainer>
   );
 }
