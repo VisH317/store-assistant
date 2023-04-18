@@ -11,7 +11,7 @@ type StoreOutput = PostgrestSingleResponse<{
     userid: string;
 }>
 
-type StoreData = {
+export type StoreData = {
     createdAt: string;
     description: string | null;
     id: string;
@@ -32,7 +32,7 @@ const sorter = (row: StoreData , splitQuery: string[]) => {
 
 
 // change the schema to provide the country, state, city, and address to search based on instead
-const search = async (query: string, country: string, state: string, city: string) => {
+const search = async (query: string, country: string, state: string, city: string): Promise<StoreData[]> => {
     const splitQuery = query.split(/[\s,]+/)
     splitQuery.push(country, state, city)
 
@@ -47,7 +47,7 @@ const search = async (query: string, country: string, state: string, city: strin
         return aIdx > bIdx ? 1 : aIdx===bIdx ? 0 : -1
     })
 
-    return data
+    return data!
 }
 
 export default search

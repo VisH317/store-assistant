@@ -8,7 +8,7 @@ export type Location = {
     city?: string
 }
 
-const location: Atom<Location> = atom<Location>({
+const location = atom({
     country: "",
     state: "",
     city: ""

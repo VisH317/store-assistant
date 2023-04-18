@@ -1,21 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, Text, StyleSheet, Pressable, TextInput } from 'react-native'
 import colors from '../colors'
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
-import search from '../lib/search'
+import search, { StoreData } from '../lib/search'
+import SearchItem from '../components/SearchItem'
 
 export default function Search({ navigation }: any): JSX.Element {
 
+    const [query, setQuery] = useState<string>("")
+    const [stores, setStores] = useState<StoreData[]>([])
+    
     const returnToHome = () => {
         navigation.navigate("Home")
     }
 
-    const getStores = (name: string) => {
 
-    }
 
     return (
         <View>
@@ -24,7 +26,7 @@ export default function Search({ navigation }: any): JSX.Element {
                     <FontAwesomeIcon icon={faArrowLeft} size={30} color={colors.medium}/>
                 </Pressable>
                 <View style={styles.searchContainer}>
-                    <TextInput style={styles.search} placeholder="Search..."></TextInput>
+                    <TextInput style={styles.search} placeholder="Search..." value={query} onChangeText={e => setQuery(e)}></TextInput>
                     <Pressable style={styles.searchbtn}>
                         <FontAwesomeIcon icon={faMagnifyingGlass} size={25} color={colors.medium}/>
                     </Pressable>

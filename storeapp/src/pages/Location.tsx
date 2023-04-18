@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { useAtom } from 'jotai'
-import location, { Location } from '../lib/location';
+import location from '../lib/location';
 
 const data = [
     { label: "United States", value: "US" },
@@ -30,8 +30,8 @@ export default function Location({ navigation }: any) {
     const [loc, setLoc] = useAtom(location)
 
     const navigateToSearch = () => {
-        if(state.length===0 || city.length===0 || value?.length===0) return
-        const loc: Location = {
+        if(value===undefined || state.length===0 || city.length===0 || value?.length===0) return
+        const loc = {
             country: value,
             state,
             city
