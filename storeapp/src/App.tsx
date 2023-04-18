@@ -38,17 +38,15 @@ export default function App(): JSX.Element {
   };
 
   return (
-    <NavigationContainer>
+    
       <QueryClientProvider client={queryClient}>
-        <SafeAreaView style={backgroundStyle}>
-          {/* <Stack.Navigator initialRouteName='Home'>
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName='Home' screenOptions={({ route }) => ({ headerShown: false })}>
             <Stack.Screen name="Home" component={Home}/>
             <Stack.Screen name="Search" component={Search}/>
             <Stack.Screen name="Chat" component={Chat}/>
-          </Stack.Navigator> */}
-          <Home/>
-        </SafeAreaView>
+          </Stack.Navigator>
+        </NavigationContainer>
       </QueryClientProvider>
-    </NavigationContainer>
   );
 }
