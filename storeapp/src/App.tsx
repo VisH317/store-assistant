@@ -13,9 +13,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import Home from './pages/Home';
 import Search from './pages/Search'
 import Chat from './pages/Chat'
+import Location from './pages/Location';
 
 type RootStackParamList = {
   Home: undefined,
+  Location: undefined,
   Search: undefined,
   Chat: { storeID: string }
 }
@@ -43,6 +45,7 @@ export default function App(): JSX.Element {
         <NavigationContainer>
           <Stack.Navigator initialRouteName='Home' screenOptions={({ route }) => ({ headerShown: false })}>
             <Stack.Screen name="Home" component={Home}/>
+            <Stack.Screen name="Location" component={Location}/>
             <Stack.Screen name="Search" component={Search}/>
             <Stack.Screen name="Chat" component={Chat}/>
           </Stack.Navigator>

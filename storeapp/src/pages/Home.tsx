@@ -1,16 +1,15 @@
 import React, { useState } from 'react'
-import { View, Text, StyleSheet, Image, Pressable, TouchableHighlight } from 'react-native'
+import { View, Text, StyleSheet, Image, Pressable, TouchableHighlight, TextInput } from 'react-native'
 import colors from '../colors'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
-
 
 export default function Home({ navigation }: any): JSX.Element {
 
     const [pressed, setPressed] = useState<boolean>(false)
 
     const navigateToSearch = () => {
-        navigation.navigate("Search")
+        navigation.navigate("Location")
     }
 
     return (
@@ -139,5 +138,6 @@ const styles = StyleSheet.create({
         width: 170,
         height: 50,
         padding: 10
-    }
+    },
+  
 })
