@@ -7,17 +7,27 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import search, { StoreData } from '../lib/search'
 import SearchItem from '../components/SearchItem'
+import location from '../lib/location'
+import { useAtom } from 'jotai'
 
 export default function Search({ navigation }: any): JSX.Element {
 
     const [query, setQuery] = useState<string>("")
     const [stores, setStores] = useState<StoreData[]>([])
+    const [loc, setLoc] = useAtom(location)
     
     const returnToHome = () => {
         navigation.navigate("Home")
     }
 
+    const searchStores = async () => {
+        const data = await search(query, loc.country, loc.state, loc.city)
+        setStores(data)
+    }
 
+    const mapStores = () => {
+        return stores.map(s => <SearchItem store={s}/>)
+    }
 
     return (
         <View>
@@ -27,10 +37,13 @@ export default function Search({ navigation }: any): JSX.Element {
                 </Pressable>
                 <View style={styles.searchContainer}>
                     <TextInput style={styles.search} placeholder="Search..." value={query} onChangeText={e => setQuery(e)}></TextInput>
-                    <Pressable style={styles.searchbtn}>
+                    <Pressable style={styles.searchbtn} onPressOut={searchStores}>
                         <FontAwesomeIcon icon={faMagnifyingGlass} size={25} color={colors.medium}/>
                     </Pressable>
                 </View>
+            </View>
+            <View style={styles.body}>
+                {mapStores()}
             </View>
         </View>
     )
@@ -50,6 +63,12 @@ const styles = StyleSheet.create({
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+    },
+    body: {
+        display: "flex",
+        flexDirection: "column",
+        padding: 5,
+        columnGap: 5,
     },
     searchContainer: {
         height: "100%",

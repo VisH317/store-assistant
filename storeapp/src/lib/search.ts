@@ -35,6 +35,7 @@ const sorter = (row: StoreData , splitQuery: string[]) => {
 const search = async (query: string, country: string, state: string, city: string): Promise<StoreData[]> => {
     const splitQuery = query.split(/[\s,]+/)
     splitQuery.push(country, state, city)
+    console.log("split query: ", splitQuery)
 
     for(let i = 0; i < splitQuery.length; i++) splitQuery[i] = `'${splitQuery[i]}'`
     const queryString = splitQuery.join(" | ")
