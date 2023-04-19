@@ -11,7 +11,7 @@ type StoreRes = {
     result: string
 }
 
-export default async function(storePrompt: string, question: string) {
+export default async function storeCompletion(storePrompt: string, question: string) {
 
     const body: StoreCompletion = { storePrompt, question }
 
