@@ -14,12 +14,13 @@ import Home from './pages/Home';
 import Search from './pages/Search'
 import Chat from './pages/Chat'
 import Location from './pages/Location';
+import { StoreData } from './lib/search';
 
 type RootStackParamList = {
   Home: undefined,
   Location: undefined,
   Search: undefined,
-  Chat: { storeID: string }
+  Chat: { store: StoreData }
 }
 
 const Stack = createNativeStackNavigator<RootStackParamList>()

@@ -15,6 +15,7 @@ export default function Search({ navigation }: any): JSX.Element {
     const [query, setQuery] = useState<string>("")
     const [stores, setStores] = useState<StoreData[]>([])
     const [loc, setLoc] = useAtom(location)
+    const [whichPressed, setWhichPressed] = useState<number>(-1)
     
     const returnToHome = () => {
         navigation.navigate("Home")
@@ -25,8 +26,15 @@ export default function Search({ navigation }: any): JSX.Element {
         setStores(data)
     }
 
+    const navigateChat = (store: StoreData) => {
+        navigation.navigate(
+            'Chat',
+            { store }
+        )
+    }
+
     const mapStores = () => {
-        return stores.map(s => <SearchItem store={s}/>)
+        return stores.map((s, index) => <SearchItem store={s} key={index} sendPress={n => {console.log("yea");setWhichPressed(n)}} isPressed={whichPressed===index} navigateChat={navigateChat}/>)
     }
 
     return (
