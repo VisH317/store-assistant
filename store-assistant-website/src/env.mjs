@@ -5,12 +5,15 @@ import { z } from "zod";
  * built with invalid env vars.
  */
 const server = z.object({
+  DIRECT_URL: z.string().url(),
   DATABASE_URL: z.string().url(),
   NODE_ENV: z.enum(["development", "test", "production"]),
+  NEXT_PUBLIC_SUPABASE_URL: z.string(),
+  NEXT_PUBLIC_SUPABASE_ANON_KEY: z.string(),
   STRIPE_PK: z.string(),
   STRIPE_SK: z.string(),
-  SUPABASE_URL: z.string(),
-  SUPABASE_ANON: z.string()
+  STRIPE_WEBHOOK_SECRET: z.string(),
+  STRIPE_PRICE_ID: z.string()
 });
 
 /**
@@ -28,8 +31,12 @@ const client = z.object({
  * @type {Record<keyof z.infer<typeof server> | keyof z.infer<typeof client>, string | undefined>}
  */
 const processEnv = {
+  DIRECT_URL: process.env.DIRECT_URL,
   DATABASE_URL: process.env.DATABASE_URL,
   NODE_ENV: process.env.NODE_ENV,
+  STRIPE_PRICE_ID: process.env.STRIPE_PRICE_ID,
+  NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
+  NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
   STRIPE_PK: process.env.STRIPE_PK,
   STRIPE_SK: process.env.STRIPE_SK,
   STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET

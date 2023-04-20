@@ -12,7 +12,7 @@ export const getOrCreateStripeCustomerIdForUser = async ({
     prisma: PrismaClient;
     userId: string;
 }) => {
-    const supabase: SupabaseClient = createClient(env.SUPABASE_URL, env.SUPABASE_ANON)
+    const supabase: SupabaseClient = createClient(env.NEXT_PUBLIC_SUPABASE_URL, env.NEXT_PUBLIC_SUPABASE_ANON_KEY)
     const user = await supabase.auth.getUser()
     const customer = await prisma.user.findUnique({
         where: { id: user.data.user?.id }

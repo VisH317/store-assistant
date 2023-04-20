@@ -9,6 +9,7 @@ import type { Database } from '~/utils/supabase'
 import Sidebar from '~/Components/Sidebar'
 import { raleway } from '~/utils/fonts'
 import { useRouter } from 'next/router'
+import { api } from '~/utils/api'
 
 export default function NewStore({ user }: { user: User }) {
 
@@ -16,8 +17,10 @@ export default function NewStore({ user }: { user: User }) {
 
     // const newuser = useUser()
     const supabase = useSupabaseClient<Database>()
-
     const router = useRouter()
+
+    // payment mutation
+    const createCheckoutSession = api.stripe.createCheckoutSession.useMutation()
 
     // form states
     const [name, setName] = useState<string>("")
@@ -54,6 +57,7 @@ export default function NewStore({ user }: { user: User }) {
     const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         if(!updateAlert()) return
+        await createCheckoutSession.mutateAsync()
         const body = {
             createdAt: ((new Date()).toISOString()).toLocaleString(),
             userid: user.id,
@@ -86,7 +90,7 @@ export default function NewStore({ user }: { user: User }) {
                     </div>
                     <div className={`${createAlert.length===0 ? "hidden" : "block"} rounded-xl bg-red-200 border-red-500 text-red-500 p-5 w-[80%] h-8`}>{createAlert}</div>
                     <div className="flex-none flex justify-center">
-                        <button type="submit" disabled={disabled} className="w-[80%] h-16 bg-violet-500 text-2xl font-normal disabled:cursor-not-allowed cursor-pointer disabled:hover:bg-violet-50 text-white rounded-md disabled:bg-violet-100 enabled:hover:bg-violet-600 enabled:hover:text-gray-200 enabled:hover:-translate-y-1 enabled:hover:shadow-md duration-300">Submit</button>
+                        <button type="submit" disabled={disabled} className="w-[80%] h-16 bg-violet-500 text-2xl font-normal disabled:cursor-not-allowed cursor-pointer disabled:hover:bg-violet-50 text-white rounded-md disabled:bg-violet-100 enabled:hover:bg-violet-600 enabled:hover:text-gray-200 enabled:hover:-translate-y-1 enabled:hover:shadow-md duration-300">Continue to Payment</button>
                     </div>
                 </form>
             </div>
