@@ -41,7 +41,7 @@ const search = async (query: string, country: string, state: string, city: strin
     const queryString = splitQuery.join(" | ")
 
     const rows = await supabase.from("Store").select().textSearch('title_description', queryString)
-    const data = rows.data
+    const data = rows.data as StoreData[]
     data?.sort((a: StoreData, b: StoreData): number => {
         const aIdx: number = sorter(a, splitQuery)
         const bIdx: number = sorter(b, splitQuery)

@@ -1,11 +1,11 @@
-import { Store } from '@prisma/client'
+import { OnlineStore, Store } from '@prisma/client'
 import React from 'react'
 
 interface StoreProps {
-    store: Store,
+    store: Store | OnlineStore,
     key: string,
-    update: (s: Store) => void,
-    del: (s: Store) => void,
+    update: (s: Store | OnlineStore) => void,
+    del: (s: Store | OnlineStore) => void,
 }
 
 export default function StoreView({ store, key, update, del }: StoreProps) {
@@ -28,7 +28,7 @@ export default function StoreView({ store, key, update, del }: StoreProps) {
             <div className="flex-none">
                 <p className="xl:text-5xl lg:text-4xl md:text-3xl sm:text-xl font-slate-800 font-medium">{store.name}</p>
                <div className="h-2"/>
-               <p className="xl:text-lg lg:text-lg md:text-md sm:text-sm font-slate-700 font-normal">Location: {store.location}</p>
+               <p className="xl:text-lg lg:text-lg md:text-md sm:text-sm font-slate-700 font-normal">Location: {Object.keys(store).includes("location") ? (store as Store).location : (store as OnlineStore).website}</p>
                <div className="h-4"/>
             </div>
             <div className="grow h-14 ...">

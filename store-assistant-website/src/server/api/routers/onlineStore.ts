@@ -1,9 +1,9 @@
 import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
-import { ChangeStorePromptData, CreateStoreData } from "./types";
+import { ChangeStorePromptData, CreateOnlineStoreData, CreateStoreData } from "./types";
 
-export const storeRouter = createTRPCRouter({
+export const onlineStoreRouter = createTRPCRouter({
 //   hello: publicProcedure
 //     .input(z.object({ text: z.string() }))
 //     .query(({ input }) => {
@@ -15,14 +15,14 @@ export const storeRouter = createTRPCRouter({
 //     return ctx.prisma.example.findMany();
 //   }),
     createStore: publicProcedure   
-        .input(CreateStoreData)
+        .input(CreateOnlineStoreData)
         .mutation(async ({ input, ctx }) => {
-            await ctx.prisma.store.create({ data: input })
+            await ctx.prisma.onlineStore.create({ data: input })
         }),
     getStores: publicProcedure
         .input(String)
         .query(async ({ input, ctx }) => {
-            const allStores = await ctx.prisma.store.findMany({
+            const allStores = await ctx.prisma.onlineStore.findMany({
                 where: { userid: input }
             })
             return allStores
@@ -30,7 +30,7 @@ export const storeRouter = createTRPCRouter({
     changeStorePrompt: publicProcedure
         .input(ChangeStorePromptData)
         .mutation(async ({ input, ctx }) => {
-            await ctx.prisma.store.update({
+            await ctx.prisma.onlineStore.update({
                 data: { prompt: input.prompt },
                 where: { id: input.id }
             })
@@ -38,7 +38,7 @@ export const storeRouter = createTRPCRouter({
     deleteStore: publicProcedure
         .input(String)
         .mutation(async ({ input, ctx }) => {
-            await ctx.prisma.store.delete({
+            await ctx.prisma.onlineStore.delete({
                 where: { id: input }
             })
         })
