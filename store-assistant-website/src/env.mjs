@@ -8,7 +8,9 @@ const server = z.object({
   DATABASE_URL: z.string().url(),
   NODE_ENV: z.enum(["development", "test", "production"]),
   STRIPE_PK: z.string(),
-  STRIPE_SK: z.string()
+  STRIPE_SK: z.string(),
+  SUPABASE_URL: z.string(),
+  SUPABASE_ANON: z.string()
 });
 
 /**
