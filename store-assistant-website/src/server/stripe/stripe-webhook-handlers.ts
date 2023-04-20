@@ -21,9 +21,9 @@ export const getOrCreateStripeCustomerIdForUser = async ({
     if(customer.customerId) return customer.customerId
 
     const newCustomer = await stripe.customers.create({
-        email: user.data.user?.email ?? undefined,
+        email: user.data.user?.email as string,
         metadata: {
-            userId: user.data.user?.id
+            userId: user.data.user?.id as string
         }
     })
 

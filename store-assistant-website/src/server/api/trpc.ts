@@ -17,6 +17,10 @@
 import { type CreateNextContextOptions } from "@trpc/server/adapters/next";
 
 import { prisma } from "~/server/db";
+import { stripe } from "~/lib/stripe";
+import { createClient, SupabaseClient } from '@supabase/supabase-js'
+
+const supabase: SupabaseClient = createClient(env.SUPABASE_URL, env.SUPABASE_ANON)
 
 type CreateContextOptions = Record<string, never>;
 
@@ -31,8 +35,13 @@ type CreateContextOptions = Record<string, never>;
  * @see https://create.t3.gg/en/usage/trpc#-serverapitrpcts
  */
 const createInnerTRPCContext = (_opts: CreateContextOptions) => {
+  const { req, res } = _opts
   return {
     prisma,
+    stripe,
+    req,
+    res,
+    supabase
   };
 };
 
@@ -43,7 +52,8 @@ const createInnerTRPCContext = (_opts: CreateContextOptions) => {
  * @see https://trpc.io/docs/context
  */
 export const createTRPCContext = (_opts: CreateNextContextOptions) => {
-  return createInnerTRPCContext({});
+  const { req, res } = _opts
+  return createInnerTRPCContext({ req, res });
 };
 
 /**
@@ -56,6 +66,7 @@ export const createTRPCContext = (_opts: CreateNextContextOptions) => {
 import { initTRPC } from "@trpc/server";
 import superjson from "superjson";
 import { ZodError } from "zod";
+import { env } from "~/env.mjs";
 
 const t = initTRPC.context<typeof createTRPCContext>().create({
   transformer: superjson,
