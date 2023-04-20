@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
-import { View, ScrollView, Text, StyleSheet, TextInput, TouchableHighlight } from 'react-native'
+import { View, ScrollView, Text, StyleSheet, TextInput, TouchableHighlight, Pressable } from 'react-native'
 import colors from '../colors'
 import { StoreData } from '../lib/search'
-import ChatItem from '../components/chatItem'
+import ChatItem from '../components/ChatItem'
 import storeCompletion from '../lib/openai'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
-
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import supabase from '../lib/supabase'
 
 export default function Chat({ route, navigation }: any): JSX.Element {
 
@@ -22,10 +23,14 @@ export default function Chat({ route, navigation }: any): JSX.Element {
         }
         setMessages([...messages, msg])
 
-        const res = await storeCompletion(store.prompt, msgText)
+        // const res = await storeCompletion(store.prompt, msgText)
+        const { data, error } = await supabase.functions.invoke('storeChat', {
+            body: msg
+        })
+        console.log("error: ", error)
         const resMsg: Message = {
             sender: "system",
-            content: res
+            content: data
         }
         setMessages([...messages, resMsg])
     }
@@ -34,10 +39,17 @@ export default function Chat({ route, navigation }: any): JSX.Element {
         return messages.map(m => <ChatItem isUser={m.sender==="user"} text={m.content}/>)
     }
 
+    const returnToHome = () => {
+        navigation.navigate("Search")
+    }
+
     return (
         <View>
             <View style={styles.header}>
-                <Text>{store.name}</Text>
+                <Pressable style={styles.back} onPressOut={returnToHome}>
+                    <FontAwesomeIcon icon={faArrowLeft} size={30} color={colors.medium}/>
+                </Pressable>
+                <Text style={styles.headerText}>{store.name}</Text>
             </View>
             <ScrollView style={styles.msgs}>
                 {mapMessages()}
@@ -59,8 +71,25 @@ export default function Chat({ route, navigation }: any): JSX.Element {
 const styles = StyleSheet.create({
     header: {
         width: "100%",
-        height: "5%",
-        backgroundColor: colors.light
+        height: "7%",
+        backgroundColor: colors.light,
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center"
+    },
+    back: {
+        height: "100%",
+        width: 60,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        flexGrow: 0
+    },
+    headerText: {
+        flexGrow: 1,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center"
     },
     msgs: {
         width: "100%",

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, StyleSheet, Text } from 'react-native/types'
+import { View, StyleSheet, Text } from 'react-native'
 import colors from '../colors'
 
 interface ChatItemProps {
@@ -21,27 +21,35 @@ const styles = StyleSheet.create({
     personalChatContainer: {
         width: "100%",
         display: "flex",
-        justifyContent: "flex-end"
+        flexDirection: "row",
+        justifyContent: "flex-end",
+        padding: 10,
     },
     resChatContainer: {
         width: "100%",
         display: "flex",
-        justifyContent: "flex-start"
+        flexDirection: "row",
+        justifyContent: "flex-start",
+        padding: 10
     },
     personalInnerChatContainer: {
         width: 200,
-        padding: 5,
+        padding: 10,
         fontSize: 15,
         color: colors.mediumdark,
         backgroundColor: colors.mediumlight,
-        borderRadius: 20
+        borderRadius: 20,
+        display: "flex",
+        justifyContent: "center"
     },
     resInnerChatContainer: {
         width: 200,
-        padding: 5,
+        padding: 10,
         fontSize: 15,
         color: colors.mediumdark,
         backgroundColor: colors.medium,
-        borderRadius: 20
+        borderRadius: 20,
+        display: "flex",
+        justifyContent: "center"
     },
 })
