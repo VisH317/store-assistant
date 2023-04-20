@@ -22,19 +22,13 @@ export default function Dashboard({ user }:{ user: User }) {
 
     const supabase = useSupabaseClient<Database>()
 
-    useEffect(() => {
-      async function loadData() {
-        const res = await supabase.from("Store").select("*")
-        setStores(res?.data as Store[])
-      }
-      if(user) void loadData()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [user])
-
     const { status, data } = api.store.getStores.useQuery(newuser?.id as string)
     console.log("status: ", status)
     console.log("data: ", data)
-    // const updateStoreMutation = api.store.changeStorePrompt.useMutation()
+
+    useEffect(() => setStores(data), [data])
+    const updateStoreMutation = api.store.changeStorePrompt.useMutation()
+    const deleteStoreMutation = api.store.deleteStore.useMutation()
 
     // modal stuff
     const [open, setOpen] = useState<boolean>(false)
@@ -65,7 +59,8 @@ export default function Dashboard({ user }:{ user: User }) {
 
     const updateStore = async () => {
         // updateStoreMutation.mutate(prompt)
-        await supabase.from("Store").update({ prompt }).eq('id', store?.id)
+        // await supabase.from("Store").update({ prompt }).eq('id', store?.id)
+        await updateStoreMutation.mutateAsync({ prompt, id: store?.id as string })
         setOpen(false)
         alert("Updated prompt!")
     }
@@ -75,7 +70,8 @@ export default function Dashboard({ user }:{ user: User }) {
     }
 
     const deleteStore = async (s: Store) => {
-      await supabase.from("Store").delete().eq("id", s.id)
+      // await supabase.from("Store").delete().eq("id", s.id)
+      await deleteStoreMutation.mutateAsync(store?.id as string)
       setDeleteModal(false)
     }
 
