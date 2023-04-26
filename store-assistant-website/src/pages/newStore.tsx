@@ -57,7 +57,7 @@ export default function NewStore({ user }: { user: User }) {
     const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         if(!updateAlert()) return
-        await createCheckoutSession.mutateAsync()
+        // await createCheckoutSession.mutateAsync()
         const body = {
             createdAt: ((new Date()).toISOString()).toLocaleString(),
             userid: user.id,
