@@ -19,7 +19,7 @@ datasource db {
 
 
 model Store {
-    id String @id @db.Uuid @default(cuid())
+    id String @id @default(cuid())
     createdAt String
     userid String @db.Uuid
     name String
@@ -29,7 +29,7 @@ model Store {
 }
 
 model OnlineStore {
-    id String @id @db.Uuid @default(cuid())
+    id String @id @default(cuid())
     createdAt String
     userid String @db.Uuid
     name String

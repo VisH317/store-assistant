@@ -11,7 +11,7 @@ import { stripeRouter } from "./routers/stripe";
 export const appRouter = createTRPCRouter({
   store: storeRouter,
   onlineStore: onlineStoreRouter,
-  stripe: stripeRouter
+  // stripe: stripeRouter
 });
 
 // export type definition of API
