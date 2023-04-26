@@ -10,10 +10,10 @@ const server = z.object({
   NODE_ENV: z.enum(["development", "test", "production"]),
   NEXT_PUBLIC_SUPABASE_URL: z.string(),
   NEXT_PUBLIC_SUPABASE_ANON_KEY: z.string(),
-  STRIPE_PK: z.string(),
-  STRIPE_SK: z.string(),
-  STRIPE_WEBHOOK_SECRET: z.string(),
-  STRIPE_PRICE_ID: z.string()
+  // STRIPE_PK: z.string(),
+  // STRIPE_SK: z.string(),
+  // STRIPE_WEBHOOK_SECRET: z.string(),
+  // STRIPE_PRICE_ID: z.string()
 });
 
 /**
@@ -34,12 +34,12 @@ const processEnv = {
   DIRECT_URL: process.env.DIRECT_URL,
   DATABASE_URL: process.env.DATABASE_URL,
   NODE_ENV: process.env.NODE_ENV,
-  STRIPE_PRICE_ID: process.env.STRIPE_PRICE_ID,
+  // STRIPE_PRICE_ID: process.env.STRIPE_PRICE_ID,
   NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
   NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
-  STRIPE_PK: process.env.STRIPE_PK,
-  STRIPE_SK: process.env.STRIPE_SK,
-  STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET
+  // STRIPE_PK: process.env.STRIPE_PK,
+  // STRIPE_SK: process.env.STRIPE_SK,
+  // STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET
   // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
 };
 

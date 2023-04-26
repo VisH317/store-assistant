@@ -1,4 +1,5 @@
 import { OnlineStore, Store } from '@prisma/client'
+import { useRouter } from 'next/router'
 import React from 'react'
 
 interface StoreProps {
@@ -9,6 +10,9 @@ interface StoreProps {
 }
 
 export default function StoreView({ store, key, update, del }: StoreProps) {
+
+    const router = useRouter()
+
     return (
         // <div className="w-96 xl:w-[32rem] xl:h-[20rem] rounded-lg bg-white border-slate-200 p-5 relative shadow-md hover:shadow-none hover:translate-y-1 duration-300 justify-between" key={key}>
         //     {/* <p className="xl:text-5xl lg:text-4xl md:text-3xl sm:text-xl font-slate-800 font-medium">{store.name}</p> */}
@@ -24,7 +28,7 @@ export default function StoreView({ store, key, update, del }: StoreProps) {
         //         </div> */}
         //     </div>
         // </div>
-        <div className="flex ... flex-col w-96 cursor-default xl:w-[32rem] xl:h-[21rem] lg:w-[24rem] lg:h-[16rem] md:w-[20rem] md:h-[16rem] rounded-lg bg-white border-slate-200 p-5 shadow-md hover:shadow-none hover:translate-y-1 duration-300" key={key}>
+        <div className="flex ... flex-col w-96 cursor-default xl:w-[32rem] xl:h-[21rem] lg:w-[24rem] lg:h-[16rem] md:w-[20rem] md:h-[16rem] rounded-lg bg-white border-slate-200 p-5 shadow-md hover:shadow-none hover:translate-y-1 duration-300" key={key} onClick={() => void router.push(store.id)}>
             <div className="flex-none">
                 <p className="xl:text-5xl lg:text-4xl md:text-3xl sm:text-xl font-slate-800 font-medium">{store.name}</p>
                <div className="h-2"/>

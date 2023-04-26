@@ -17,10 +17,10 @@
 import { type CreateNextContextOptions } from "@trpc/server/adapters/next";
 
 import { prisma } from "~/server/db";
-import { stripe } from "~/lib/stripe";
+// import { stripe } from "~/lib/stripe";
 import { createClient, SupabaseClient } from '@supabase/supabase-js'
 
-const supabase: SupabaseClient = createClient(env.SUPABASE_URL, env.SUPABASE_ANON)
+// const supabase: SupabaseClient = createClient(env.SUPABASE_URL, env.SUPABASE_ANON)
 
 type CreateContextOptions = Record<string, never>;
 
@@ -38,8 +38,8 @@ const createInnerTRPCContext = (_opts?: CreateContextOptions) => {
   // const { req, res } = _opts
   return {
     prisma,
-    stripe,
-    supabase
+    // stripe,
+    // supabase
   };
 };
 

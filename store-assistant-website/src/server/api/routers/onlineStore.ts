@@ -41,5 +41,12 @@ export const onlineStoreRouter = createTRPCRouter({
             await ctx.prisma.onlineStore.delete({
                 where: { id: input }
             })
+        }),
+    getById: publicProcedure
+        .input(String)
+        .query(async ({ input, ctx }) => {
+            await ctx.prisma.onlineStore.findFirst({
+                where: { id: input }
+            })
         })
 });
