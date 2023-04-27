@@ -26,6 +26,7 @@ model Store {
     description String
     location String
     prompt String
+    products String[]
 }
 
 model OnlineStore {
