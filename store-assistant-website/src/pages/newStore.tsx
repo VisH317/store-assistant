@@ -57,6 +57,10 @@ export default function NewStore({ user }: { user: User }) {
     const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         if(!updateAlert()) return
+
+        // get products
+        const products = await supabase.functions.invoke('getProducts', { body: prompt })
+
         // await createCheckoutSession.mutateAsync()
         const body = {
             createdAt: ((new Date()).toISOString()).toLocaleString(),
@@ -65,6 +69,7 @@ export default function NewStore({ user }: { user: User }) {
             description: desc,
             location: loc,
             prompt,
+            products
         }
 
         // createStore.mutate(body)

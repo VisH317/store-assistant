@@ -26,7 +26,7 @@ serve(async (req) => {
         temperature: 0.1
     })
 
-    const completionText: string = res.data.choices[0].message.context
+    const completionText: string = res.data.choices[0].message.context.split(",").map((t: string) => t.trim())
     const body = JSON.stringify({
         result: completionText
     })
