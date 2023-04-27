@@ -51,4 +51,9 @@ const search = async (query: string, country: string, state: string, city: strin
     return data!
 }
 
+export const productSearch = async (query: string, country: string, state: string, city: string): Promise<StoreData[]> => {
+    const splitQuery = query.split(/[\s,]+/)
+    const rows = await supabase.from("Store").select().contains("products", splitQuery[0])
+}
+
 export default search
